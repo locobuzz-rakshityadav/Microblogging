@@ -1,0 +1,29 @@
+version: '3'
+services:
+  usermanagement:
+    build:
+      context: ./UserManagementMicroservice
+      dockerfile: Dockerfile.usermanagement
+    ports:
+      - 8001:80
+  postmanagement:
+    build:
+      context: ./PostManagementMicroservice
+      dockerfile: Dockerfile.postmanagement
+    ports:
+      - 8002:80
+  feedgeneration:
+    build:
+      context: ./FeedGenerationMicroservice
+      dockerfile: Dockerfile.feedgeneration
+    ports:
+      - 8003:80
+    depends_on:
+      - usermanagement
+      - postmanagement
+  followmanagement:
+    build:
+      context: ./FollowManagementMicroservice
+      dockerfile: Dockerfile.followmanagement
+    ports:
+      - 800
