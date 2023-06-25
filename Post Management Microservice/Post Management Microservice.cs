@@ -11,18 +11,6 @@ public class Post
     public int UserId { get; set; }
 }
 
-// DbContext class for interacting with the database
-public class PostDbContext : DbContext
-{
-    public DbSet<Post> Posts { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Your_SQL_Server_Connection_String");
-    }
-}
-
-
 public class PostService
 {
     private readonly PostDbContext _dbContext;
@@ -96,4 +84,3 @@ public class Program
         bool isDeleted = postService.DeletePost(1, 1);
         Console.WriteLine("Post deleted: " + isDeleted);
     }
-}
