@@ -61,49 +61,7 @@ public class FeedGenerationService
     }
 }
 
-// Follow Management service
-public class FollowManagementService
-{
-    private readonly UserManagementService _userManagementService;
-    private readonly FeedGenerationService _feedGenerationService;
-
-    public FollowManagementService()
-    {
-        _userManagementService = new UserManagementService();
-        _feedGenerationService = new FeedGenerationService();
-    }
-
-    public void FollowUser(int followerId, int followeeId)
-    {
-        User follower = _userManagementService.GetUserById(followerId);
-        User followee = _userManagementService.GetUserById(followeeId);
-
-        if (follower == null || followee == null)
-        {
-            throw new ArgumentException("Invalid user IDs");
-        }
-
-        follower.FollowedUserIds.Add(followeeId);
-        _userManagementService.UpdateUser(follower);
-
-        UpdateFeedGeneration(followerId);
-    }
-
-    public void UnfollowUser(int followerId, int followeeId)
-    {
-        User follower = _userManagementService.GetUserById(followerId);
-        User followee = _userManagementService.GetUserById(followeeId);
-
-        if (follower == null || followee == null)
-        {
-            throw new ArgumentException("Invalid user IDs");
-        }
-
-        follower.FollowedUserIds.Remove(followeeId);
-        _userManagementService.UpdateUser(follower);
-
-        UpdateFeedGeneration(followerId);
-    }
+/
 
     public List<int> GetFollowers(int userId)
     {
