@@ -11,17 +11,6 @@ public class User
     public string Email { get; set; }
 }
 
-// DbContext class for interacting with the database
-public class UserDbContext : DbContext
-{
-    public DbSet<User> Users { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Your_SQL_Server_Connection_String");
-    }
-}
-
 // User service class for handling user-related operations
 public class UserService
 {
